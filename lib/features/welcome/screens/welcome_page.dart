@@ -13,12 +13,31 @@ class WelcomePage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
+            const Spacer(),
             Lottie.asset('assets/animations/welcomeLight.json'),
             const Text(
-              '🌟 Welcome to our Quotes App!\n 📚✨ Explore a world of wisdom and inspiration right at your fingertips. Dive into thought-provoking quotes that resonate with the heart and soul. Let the journey begin! 🚀',
-              style: TextStyle(),
+              '🌟 Welcome to our Quotes App!\n 📚✨ Explore a world of wisdom and inspiration right at your fingertips. Let the journey begin! 🚀',
+              style: TextStyle(
+                fontSize: 16.0,
+                fontWeight: FontWeight.w500,
+              ),
               textAlign: TextAlign.center,
             ),
+            const Spacer(),
+            SizedBox(
+              height: 50.0,
+              width: double.infinity,
+              child: FilledButton(
+                style: FilledButton.styleFrom(
+                  shape: BeveledRectangleBorder(
+                      borderRadius: BorderRadius.circular(5.0)),
+                ),
+                onPressed: () {},
+                child: const Center(
+                  child: Text('Continue'),
+                ),
+              ),
+            )
           ],
         ),
       ),
