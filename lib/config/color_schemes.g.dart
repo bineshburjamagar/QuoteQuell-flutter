@@ -70,8 +70,11 @@ const darkColorScheme = ColorScheme(
 
 ThemeData lightTheme = ThemeData(
   colorScheme: lightColorScheme,
+  primaryColor: lightColorScheme.primary,
   fontFamily: 'Poppins',
   scaffoldBackgroundColor: Colors.white,
 );
-ThemeData darkTheme =
-    ThemeData(colorScheme: darkColorScheme, fontFamily: 'Poppins');
+ThemeData darkTheme = ThemeData(
+    primaryColor: darkColorScheme.primary,
+    colorScheme: darkColorScheme,
+    fontFamily: 'Poppins');

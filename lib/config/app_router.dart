@@ -10,6 +10,7 @@ class AppRouter {
     routes: [
       WelcomePage.route(),
       NameSetupPage.route(),
+      GenderSetupPage.route(),
     ],
     errorBuilder: (context, state) {
       return const Scaffold(

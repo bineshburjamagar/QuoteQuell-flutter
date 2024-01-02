@@ -10,15 +10,23 @@ dependencies:
   bot_toast: ^4.1.3
   flutter:
     sdk: flutter
+  flutter_hooks: ^0.20.4
   flutter_svg: ^2.0.9
   go_router: ^13.0.0
+  hooks_riverpod: ^2.4.9
   iconify_flutter_plus: ^1.0.3
   lottie: ^2.7.0
+  riverpod_annotation: ^2.3.3
+  utils_plus: ^0.0.2
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^2.0.0
+  riverpod_generator: ^2.3.9
+  build_runner: ^2.4.7
+  custom_lint: ^0.5.7
+  riverpod_lint: ^2.3.7
 
 flutter:
   uses-material-design: true

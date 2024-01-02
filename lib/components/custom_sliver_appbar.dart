@@ -29,7 +29,7 @@ class CustomSliverAppBar extends StatelessWidget {
           child: leadingWidget ??
               Iconify(
                 MaterialSymbols.arrow_back_ios_rounded,
-                color: Theme.of(context).indicatorColor,
+                color: Theme.of(context).iconTheme.color,
               ),
         ),
       ),

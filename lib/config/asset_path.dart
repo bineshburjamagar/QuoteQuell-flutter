@@ -4,4 +4,5 @@ class AssetPath {
 
   //images
   static const String nameSetup = '$imagePath/name_setup.png';
+  static const String gender = '$imagePath/gender.png';
 }

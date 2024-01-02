@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:kavyanepal/components/components.dart';
 import 'package:kavyanepal/config/asset_path.dart';
+import 'package:kavyanepal/features/welcome/screens/screens.dart';
 
 class NameSetupPage extends StatelessWidget {
   const NameSetupPage({Key? key}) : super(key: key);
@@ -49,9 +50,11 @@ class NameSetupPage extends StatelessWidget {
           ),
         ],
       ),
-      bottomNavigationBar: const Padding(
-        padding: EdgeInsets.symmetric(horizontal: 23.0, vertical: 20.0),
-        child: CustomButton(),
+      bottomNavigationBar: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 23.0, vertical: 20.0),
+        child: CustomButton(
+          ontap: () => context.push(GenderSetupPage.routeName),
+        ),
       ),
     );
   }
