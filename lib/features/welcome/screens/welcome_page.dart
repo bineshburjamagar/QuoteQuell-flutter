@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:kavyanepal/features/welcome/screens/screens.dart';
 import 'package:lottie/lottie.dart';
 
 class WelcomePage extends StatelessWidget {
@@ -41,7 +42,9 @@ class WelcomePage extends StatelessWidget {
                   shape: BeveledRectangleBorder(
                       borderRadius: BorderRadius.circular(5.0)),
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  context.push(NameSetupPage.routeName);
+                },
                 child: const Center(
                   child: Text(
                     'Continue',

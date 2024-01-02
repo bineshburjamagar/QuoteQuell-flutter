@@ -7,7 +7,10 @@ class AppRouter {
   static final router = GoRouter(
     observers: [BotToastNavigatorObserver()],
     initialLocation: WelcomePage.routeName,
-    routes: [WelcomePage.route()],
+    routes: [
+      WelcomePage.route(),
+      NameSetupPage.route(),
+    ],
     errorBuilder: (context, state) {
       return const Scaffold(
         body: Center(
