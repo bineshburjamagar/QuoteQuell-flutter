@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:kavyanepal/features/welcome/screens/screens.dart';
 import 'package:lottie/lottie.dart';
+import '../../../components/components.dart';
 
 class WelcomePage extends StatelessWidget {
   const WelcomePage({Key? key}) : super(key: key);
@@ -34,26 +35,11 @@ class WelcomePage extends StatelessWidget {
               textAlign: TextAlign.center,
             ),
             const Spacer(),
-            SizedBox(
-              height: 50.0,
-              width: double.infinity,
-              child: FilledButton(
-                style: FilledButton.styleFrom(
-                  shape: BeveledRectangleBorder(
-                      borderRadius: BorderRadius.circular(5.0)),
-                ),
-                onPressed: () {
-                  context.push(NameSetupPage.routeName);
-                },
-                child: const Center(
-                  child: Text(
-                    'Continue',
-                    style: TextStyle(
-                      fontSize: 16.0,
-                    ),
-                  ),
-                ),
-              ),
+            CustomButton(
+              ontap: () {
+                context.push(NameSetupPage.routeName);
+              },
+              title: 'Continue',
             )
           ],
         ),

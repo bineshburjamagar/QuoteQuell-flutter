@@ -77,7 +77,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
   @override
   Widget build(BuildContext context) {
     var outlineInputBorder = OutlineInputBorder(
-      borderSide: BorderSide(color: Theme.of(context).iconTheme.color!),
+      borderSide: const BorderSide(style: BorderStyle.none),
       borderRadius: BorderRadius.circular(widget.borderRadius ?? 10.0),
     );
     return Column(
@@ -124,12 +124,13 @@ class _CustomTextFieldState extends State<CustomTextField> {
           controller: widget.controller,
           autofocus: widget.autoFocus ?? false,
           validator: widget.validator,
-          // cursorColor: AppColors.primaryColor,
+          //cursorColor: AppColors.primaryColor,
 
           onTap: widget.onTap,
           maxLines: widget.maxLines ?? 1,
           onChanged: widget.onChanged,
           textInputAction: widget.textInputAction ?? TextInputAction.next,
+
           decoration: InputDecoration(
             hoverColor: Colors.transparent,
             prefixText: widget.prefixText,
@@ -142,6 +143,8 @@ class _CustomTextFieldState extends State<CustomTextField> {
             errorBorder: outlineInputBorder.copyWith(
               borderSide: const BorderSide(color: Colors.red),
             ),
+            fillColor: Theme.of(context).focusColor,
+            filled: true,
             disabledBorder: outlineInputBorder,
             hintText: widget.hintText,
             hintStyle: widget.hintStyle ??
