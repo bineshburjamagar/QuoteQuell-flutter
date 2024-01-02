@@ -1,8 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:lottie/lottie.dart';
 
 class WelcomePage extends StatelessWidget {
   const WelcomePage({Key? key}) : super(key: key);
+
+  static const String routeName = "/welcomepage";
+  static GoRoute route() {
+    return GoRoute(
+      path: routeName,
+      builder: (context, state) => const WelcomePage(),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +43,12 @@ class WelcomePage extends StatelessWidget {
                 ),
                 onPressed: () {},
                 child: const Center(
-                  child: Text('Continue'),
+                  child: Text(
+                    'Continue',
+                    style: TextStyle(
+                      fontSize: 16.0,
+                    ),
+                  ),
                 ),
               ),
             )
