@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:kavyanepal/components/components.dart';
+import 'package:kavyanepal/config/asset_path.dart';
 
 class NameSetupPage extends StatelessWidget {
   const NameSetupPage({Key? key}) : super(key: key);
@@ -14,25 +15,30 @@ class NameSetupPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       body: CustomScrollView(
         slivers: [
-          CustomSliverAppBar(),
+          const CustomSliverAppBar(),
           SliverPadding(
-            padding: EdgeInsets.symmetric(horizontal: 23.0, vertical: 10.0),
+            padding:
+                const EdgeInsets.symmetric(horizontal: 23.0, vertical: 10.0),
             sliver: SliverToBoxAdapter(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Center(
+                  Image.asset(
+                    AssetPath.nameSetup,
+                    alignment: Alignment.center,
+                  ),
+                  const Center(
                     child: Text(
                       'What is your name?',
                       style: TextStyle(
                           fontSize: 20.0, fontWeight: FontWeight.w600),
                     ),
                   ),
-                  SizedBox(height: 20.0),
-                  CustomTextField(
+                  const SizedBox(height: 20.0),
+                  const CustomTextField(
                     labelText: '',
                     isFilled: true,
                     hintText: 'Your name',
@@ -40,8 +46,12 @@ class NameSetupPage extends StatelessWidget {
                 ],
               ),
             ),
-          )
+          ),
         ],
+      ),
+      bottomNavigationBar: const Padding(
+        padding: EdgeInsets.symmetric(horizontal: 23.0, vertical: 20.0),
+        child: CustomButton(),
       ),
     );
   }

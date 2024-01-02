@@ -27,8 +27,9 @@ class CustomSliverAppBar extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.all(15.0),
           child: leadingWidget ??
-              const Iconify(
+              Iconify(
                 MaterialSymbols.arrow_back_ios_rounded,
+                color: Theme.of(context).indicatorColor,
               ),
         ),
       ),
