@@ -1,15 +1,15 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:iconify_flutter_plus/iconify_flutter_plus.dart';
-import 'package:iconify_flutter_plus/icons/carbon.dart';
-import 'package:iconify_flutter_plus/icons/material_symbols.dart';
 import 'package:kavyanepal/config/asset_path.dart';
-import 'package:iconify_flutter_plus/icons/ph.dart';
 
-class HomePage extends ConsumerWidget {
+import '../models/home_page_model.dart';
+
+class HomePage extends HookConsumerWidget {
   const HomePage({super.key});
   static const String routeName = "/homepage";
   static GoRoute route() {
@@ -21,41 +21,62 @@ class HomePage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final currentIndex = useState<int>(0);
     return Scaffold(
-      body: CustomScrollView(
-        slivers: [
-          SliverToBoxAdapter(
-            child: Stack(
-              alignment: Alignment.center,
-              children: [
-                Image.asset(
-                  AssetPath.homeImage,
-                  fit: BoxFit.fill,
-                  width: MediaQuery.of(context).size.width,
-                  height: MediaQuery.of(context).size.height,
-                ),
-                Container(
-                  color: Colors.black.withOpacity(0.3),
-                  width: MediaQuery.of(context).size.width,
-                  height: MediaQuery.of(context).size.height,
-                ),
-                const Center(
-                  child: Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 23.0),
-                    child: Text(
-                      '"Success is not final, failure is not fatal: It is the courage to continue that counts."\n - Winston Churchill',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontSize: 20.0,
-                        color: Colors.black,
+      body: GestureDetector(
+        onHorizontalDragEnd: (DragEndDetails details) {
+          // Check the direction of the drag
+          if (details.primaryVelocity! > 0) {
+            // Swiped from left to right (right to left motion)
+            currentIndex.value = (currentIndex.value - 1) % quotes.length;
+            if (currentIndex.value < 0) {
+              currentIndex.value = quotes.length - 1;
+            }
+          } else {
+            // Swiped from right to left (left to right motion)
+
+            currentIndex.value = (currentIndex.value + 1) % quotes.length;
+          }
+        },
+        child: CustomScrollView(
+          slivers: [
+            SliverToBoxAdapter(
+              child: Stack(
+                alignment: Alignment.center,
+                children: [
+                  Image.asset(
+                    AssetPath.homeImage,
+                    fit: BoxFit.fill,
+                    width: MediaQuery.of(context).size.width,
+                    height: MediaQuery.of(context).size.height,
+                  ),
+                  Container(
+                    color: Colors.black.withOpacity(0.3),
+                    width: MediaQuery.of(context).size.width,
+                    height: MediaQuery.of(context).size.height,
+                  ),
+                  Center(
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 23.0),
+                      child: Text(
+                        quotes[currentIndex.value],
+                        textAlign: TextAlign.center,
+                        style: const TextStyle(
+                          fontSize: 24.0,
+                          color: Colors.white,
+                        ),
                       ),
                     ),
                   ),
-                )
-              ],
-            ),
-          )
-        ],
+                  const Positioned(
+                    bottom: 100,
+                    child: Text('Swipe for the next one'),
+                  )
+                ],
+              ),
+            )
+          ],
+        ),
       ),
       extendBody: true,
       bottomNavigationBar: Container(
@@ -72,28 +93,16 @@ class HomePage extends ConsumerWidget {
               padding: const EdgeInsets.all(15.0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  Iconify(
-                    Ph.share_bold,
-                    color: Theme.of(context).iconTheme.color,
-                    size: 30.0,
-                  ),
-                  Iconify(
-                    MaterialSymbols.favorite_outline_rounded,
-                    color: Theme.of(context).iconTheme.color,
-                    size: 30.0,
-                  ),
-                  Iconify(
-                    Ph.paint_brush_broad,
-                    color: Theme.of(context).iconTheme.color,
-                    size: 30.0,
-                  ),
-                  Iconify(
-                    Carbon.settings,
-                    color: Theme.of(context).iconTheme.color,
-                    size: 30.0,
-                  )
-                ],
+                children: List.generate(homePageBottomNavList.length, (index) {
+                  return InkWell(
+                    onTap: homePageBottomNavList[index].onTap,
+                    child: Iconify(
+                      homePageBottomNavList[index].icon,
+                      color: Theme.of(context).iconTheme.color,
+                      size: 30.0,
+                    ),
+                  );
+                }),
               ),
             ),
           ),
