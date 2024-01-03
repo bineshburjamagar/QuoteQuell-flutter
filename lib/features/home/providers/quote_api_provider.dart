@@ -21,7 +21,6 @@ final quoteStateProvider =
 class QuotesStateNotifier extends StateNotifier<List<QuotesModel>> {
   QuotesStateNotifier({required this.ref}) : super([]) {
     d.log("\x1B[32m inited \x1B[0m");
-    init();
   }
   final Ref ref;
   bool isLast = false;

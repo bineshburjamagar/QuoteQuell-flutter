@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:kavyanepal/config/config.dart';
+import 'package:kavyanepal/features/home/providers/quote_api_provider.dart';
 import 'package:kavyanepal/features/home/screens/home_page.dart';
 
-class SplashPage extends StatefulWidget {
+class SplashPage extends StatefulHookConsumerWidget {
   const SplashPage({super.key});
   static const String routeName = "/splashpage";
   static GoRoute route() {
@@ -14,16 +16,15 @@ class SplashPage extends StatefulWidget {
   }
 
   @override
-  State<SplashPage> createState() => _SplashPageState();
+  ConsumerState<SplashPage> createState() => _SplashPageState();
 }
 
-class _SplashPageState extends State<SplashPage> {
+class _SplashPageState extends ConsumerState<SplashPage> {
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    Future.delayed(const Duration(seconds: 1))
-        .then((value) => context.go(HomePage.routeName));
+    initData();
   }
 
   @override
@@ -33,6 +34,14 @@ class _SplashPageState extends State<SplashPage> {
         alignment: Alignment.center,
         child: Image.asset(AssetPath.logo),
       ),
+    );
+  }
+
+  void initData() {
+    Future(() async {
+      await ref.read(quoteStateProvider.notifier).init();
+    }).then(
+      (value) => context.go(HomePage.routeName),
     );
   }
 }
