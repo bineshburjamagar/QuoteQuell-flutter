@@ -4,21 +4,24 @@ import 'package:iconify_flutter_plus/iconify_flutter_plus.dart';
 import 'package:iconify_flutter_plus/icons/material_symbols.dart';
 
 class CustomSliverAppBar extends StatelessWidget {
-  const CustomSliverAppBar({
-    super.key,
-    this.leadingWidget,
-    this.onLeadingTap,
-    this.onActionTap,
-    this.actionWidget,
-  });
+  const CustomSliverAppBar(
+      {super.key,
+      this.leadingWidget,
+      this.onLeadingTap,
+      this.onActionTap,
+      this.actionWidget,
+      this.titleText});
   final Widget? leadingWidget;
   final VoidCallback? onLeadingTap;
   final VoidCallback? onActionTap;
   final Widget? actionWidget;
+  final String? titleText;
 
   @override
   Widget build(BuildContext context) {
     return SliverAppBar(
+      centerTitle: true,
+      title: titleText != null ? Text('$titleText') : null,
       leading: InkWell(
         onTap: onLeadingTap ??
             () {

@@ -1,10 +1,12 @@
 import 'dart:typed_data';
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:iconify_flutter_plus/iconify_flutter_plus.dart';
 import 'package:iconify_flutter_plus/icons/material_symbols.dart';
 import 'package:image_gallery_saver/image_gallery_saver.dart';
 import 'package:kavyanepal/features/home/models/models.dart';
+import 'package:kavyanepal/features/more/more.dart';
 import 'package:screenshot/screenshot.dart';
 import 'package:share_plus/share_plus.dart';
 
@@ -50,6 +52,9 @@ class QuoteContentWidget extends StatelessWidget {
                             isSuccess: true,
                           );
                         }
+                        break;
+                      case 3:
+                        context.push(MorePage.routeName);
                         break;
                       default:
                     }
