@@ -3,12 +3,11 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:iconify_flutter_plus/iconify_flutter_plus.dart';
 import 'package:iconify_flutter_plus/icons/material_symbols.dart';
-
-import '../models/home_page_model.dart';
+import 'package:kavyanepal/features/home/models/models.dart';
 
 class QuoteContentWidget extends StatelessWidget {
   const QuoteContentWidget({super.key, required this.quoteModel});
-  final QuoteModel quoteModel;
+  final QuotesModel quoteModel;
   @override
   Widget build(BuildContext context) {
     return Container(

@@ -9,7 +9,7 @@ class AppRouter {
     observers: [
       BotToastNavigatorObserver(),
     ],
-    initialLocation: WelcomePage.routeName,
+    initialLocation: HomePage.routeName,
     routes: [
       WelcomePage.route(),
       NameSetupPage.route(),
