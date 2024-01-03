@@ -3,6 +3,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:go_router/go_router.dart';
 import 'package:kavyanepal/components/components.dart';
 import 'package:kavyanepal/config/config.dart';
+import 'package:kavyanepal/features/home/screens/home_page.dart';
 
 class GenderSetupPage extends StatefulHookWidget {
   const GenderSetupPage({Key? key}) : super(key: key);
@@ -86,9 +87,11 @@ class _GenderSetupPageState extends State<GenderSetupPage> {
           ),
         ],
       ),
-      bottomNavigationBar: const Padding(
-        padding: EdgeInsets.symmetric(horizontal: 23.0, vertical: 20.0),
-        child: CustomButton(),
+      bottomNavigationBar: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 23.0, vertical: 20.0),
+        child: CustomButton(
+          ontap: () => context.push(HomePage.routeName),
+        ),
       ),
     );
   }
