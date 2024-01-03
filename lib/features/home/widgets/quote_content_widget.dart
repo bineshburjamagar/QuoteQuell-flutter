@@ -1,14 +1,20 @@
+import 'dart:typed_data';
 import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:iconify_flutter_plus/iconify_flutter_plus.dart';
 import 'package:iconify_flutter_plus/icons/material_symbols.dart';
+import 'package:image_gallery_saver/image_gallery_saver.dart';
 import 'package:kavyanepal/features/home/models/models.dart';
+import 'package:screenshot/screenshot.dart';
 import 'package:share_plus/share_plus.dart';
 
+import '../../../utils/custom_bot_toast.dart';
+
 class QuoteContentWidget extends StatelessWidget {
-  const QuoteContentWidget({super.key, required this.quoteModel});
+  const QuoteContentWidget(
+      {super.key, required this.quoteModel, required this.controller});
   final QuotesModel quoteModel;
+  final ScreenshotController controller;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -27,10 +33,23 @@ class QuoteContentWidget extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: List.generate(homePageBottomNavList.length, (ind) {
                 return InkWell(
-                  onTap: () {
+                  onTap: () async {
                     switch (ind) {
                       case 0:
                         Share.share(quoteModel.content ?? "");
+                        break;
+                      case 2:
+                        Uint8List? image = await controller.capture();
+
+                        final result =
+                            await ImageGallerySaver.saveImage(image!);
+
+                        if (result != null) {
+                          CustomBotToast.text(
+                            'Image Downloaded',
+                            isSuccess: true,
+                          );
+                        }
                         break;
                       default:
                     }

@@ -1,3 +1,4 @@
+import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:kavyanepal/config/config.dart';
@@ -16,6 +17,7 @@ class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
+      builder: BotToastInit(),
       theme: lightTheme,
       darkTheme: darkTheme,
       themeMode: ThemeMode.dark,

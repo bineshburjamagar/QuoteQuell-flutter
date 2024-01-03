@@ -19,7 +19,7 @@ List<HomePageBottomNavModel> homePageBottomNavList = [
     onTap: () {},
   ),
   HomePageBottomNavModel(
-    icon: Ph.paint_brush_broad,
+    icon: Ph.download_simple_bold,
     onTap: () {},
   ),
   HomePageBottomNavModel(

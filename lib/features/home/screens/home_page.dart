@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:kavyanepal/features/home/models/quotes_model_meta.dart';
 import 'package:kavyanepal/features/home/providers/quote_api_provider.dart';
 import 'package:kavyanepal/features/home/widgets/widgets.dart';
+import 'package:screenshot/screenshot.dart';
 
 class HomePage extends HookConsumerWidget {
   const HomePage({super.key});
@@ -26,11 +28,46 @@ class HomePage extends HookConsumerWidget {
         },
         scrollDirection: Axis.vertical,
         itemBuilder: (context, index) {
-          return Stack(
-            alignment: Alignment.center,
+          return QuotesWidget(quotes: quotesList[index]);
+        },
+        itemCount: quotesList.length,
+      ),
+    );
+  }
+}
+
+class QuotesWidget extends StatefulWidget {
+  const QuotesWidget({
+    super.key,
+    required this.quotes,
+  });
+
+  final QuotesModel quotes;
+
+  @override
+  State<QuotesWidget> createState() => _QuotesWidgetState();
+}
+
+class _QuotesWidgetState extends State<QuotesWidget> {
+  late ScreenshotController screenshotController;
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    screenshotController = ScreenshotController();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      alignment: Alignment.center,
+      children: [
+        Screenshot(
+          controller: screenshotController,
+          child: Stack(
             children: [
               Image.network(
-                quotesList[index].image,
+                widget.quotes.image,
                 fit: BoxFit.fitHeight,
                 width: MediaQuery.of(context).size.width,
                 height: MediaQuery.of(context).size.height,
@@ -44,7 +81,7 @@ class HomePage extends HookConsumerWidget {
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 23.0),
                   child: Text(
-                    "${quotesList[index].content}\n\n- ${quotesList[index].author}",
+                    "${widget.quotes.content}\n\n- ${widget.quotes.author}",
                     textAlign: TextAlign.center,
                     style: const TextStyle(
                       fontSize: 24.0,
@@ -53,18 +90,19 @@ class HomePage extends HookConsumerWidget {
                   ),
                 ),
               ).animate().fade().scale(),
-              Positioned(
-                bottom: 0.0,
-                left: 0.0,
-                right: 0.0,
-                child: QuoteContentWidget(quoteModel: quotesList[index]),
-              ),
             ],
-          );
-        },
-        itemCount: quotesList.length,
-      ),
-      extendBody: true,
+          ),
+        ),
+        Positioned(
+          bottom: 0.0,
+          left: 0.0,
+          right: 0.0,
+          child: QuoteContentWidget(
+            quoteModel: widget.quotes,
+            controller: screenshotController,
+          ),
+        ),
+      ],
     );
   }
 }
