@@ -1,5 +1,3 @@
-import 'dart:math';
-
 class QuotesModelMeta {
   final int count;
   final int totalCount;
