@@ -2,13 +2,13 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:iconify_flutter_plus/iconify_flutter_plus.dart';
+import 'package:iconify_flutter_plus/icons/material_symbols.dart';
 
 import '../models/home_page_model.dart';
 
 class QuoteContentWidget extends StatelessWidget {
-  const QuoteContentWidget({
-    super.key,
-  });
+  const QuoteContentWidget({super.key, required this.quoteModel});
+  final QuoteModel quoteModel;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -35,8 +35,12 @@ class QuoteContentWidget extends StatelessWidget {
                     }
                   },
                   child: Iconify(
-                    homePageBottomNavList[ind].icon,
-                    color: Theme.of(context).iconTheme.color,
+                    (ind == 1 && quoteModel.isFavorite)
+                        ? MaterialSymbols.favorite_rounded
+                        : homePageBottomNavList[ind].icon,
+                    color: (ind == 1 && quoteModel.isFavorite)
+                        ? Colors.red
+                        : Theme.of(context).iconTheme.color,
                     size: 30.0,
                   ),
                 );

@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:kavyanepal/config/asset_path.dart';
 import 'package:kavyanepal/features/home/widgets/widgets.dart';
 
 import '../models/home_page_model.dart';
@@ -27,14 +26,14 @@ class HomePage extends HookConsumerWidget {
           return Stack(
             alignment: Alignment.center,
             children: [
-              Image.asset(
-                AssetPath.homeImage,
-                fit: BoxFit.fill,
+              Image.network(
+                quotesList[index].backgroundImage,
+                fit: BoxFit.fitHeight,
                 width: MediaQuery.of(context).size.width,
                 height: MediaQuery.of(context).size.height,
               ),
               Container(
-                color: Colors.black.withOpacity(0.3),
+                color: Colors.black.withOpacity(0.5),
                 width: MediaQuery.of(context).size.width,
                 height: MediaQuery.of(context).size.height,
               ),
@@ -51,11 +50,11 @@ class HomePage extends HookConsumerWidget {
                   ),
                 ),
               ).animate().fade().scale(),
-              const Positioned(
+              Positioned(
                 bottom: 0.0,
                 left: 0.0,
                 right: 0.0,
-                child: QuoteContentWidget(),
+                child: QuoteContentWidget(quoteModel: quotesList[index]),
               ),
             ],
           );

@@ -45,69 +45,79 @@ class QuoteModel {
 List<QuoteModel> quotesList = [
   QuoteModel(
     quote: "The only way to do great work is to love what you do.",
-    isFavorite: false,
+    isFavorite: true,
     author: "Steve Jobs",
-    backgroundImage: "https://example.com/image1.jpg",
+    backgroundImage: "https://source.unsplash.com/featured/?work,love",
+  ),
+  QuoteModel(
+    quote: "Life is what happens when you're busy making other plans.",
+    isFavorite: false,
+    author: "John Lennon",
+    backgroundImage: "https://source.unsplash.com/featured/?life,plans",
   ),
   QuoteModel(
     quote:
-        "In three words I can sum up everything I've learned about life: it goes on.",
+        "In the end, we will remember not the words of our enemies, but the silence of our friends.",
     isFavorite: true,
-    author: "Robert Frost",
-    backgroundImage: "https://example.com/image2.jpg",
+    author: "Martin Luther King Jr.",
+    backgroundImage: "https://source.unsplash.com/featured/?friends,silence",
   ),
+  // Add more data entries with appropriate Unsplash image URLs
   QuoteModel(
     quote:
         "Success is not final, failure is not fatal: It is the courage to continue that counts.",
     isFavorite: false,
     author: "Winston Churchill",
-    backgroundImage: "https://example.com/image3.jpg",
+    backgroundImage: "https://source.unsplash.com/featured/?success,courage",
+  ),
+  QuoteModel(
+    quote: "The purpose of our lives is to be happy.",
+    isFavorite: true,
+    author: "Dalai Lama",
+    backgroundImage: "https://source.unsplash.com/featured/?happy,life",
   ),
   QuoteModel(
     quote:
         "The only limit to our realization of tomorrow will be our doubts of today.",
-    isFavorite: true,
+    isFavorite: false,
     author: "Franklin D. Roosevelt",
-    backgroundImage: "https://example.com/image4.jpg",
+    backgroundImage: "https://source.unsplash.com/featured/?limit,doubts",
   ),
   QuoteModel(
-    quote:
-        "The greatest glory in living lies not in never falling, but in rising every time we fall.",
+    quote: "Believe you can and you're halfway there.",
+    isFavorite: true,
+    author: "Theodore Roosevelt",
+    backgroundImage: "https://source.unsplash.com/featured/?believe,you",
+  ),
+  QuoteModel(
+    quote: "The best way to predict the future is to create it.",
     isFavorite: false,
-    author: "Nelson Mandela",
-    backgroundImage: "https://example.com/image5.jpg",
+    author: "Peter Drucker",
+    backgroundImage: "https://source.unsplash.com/featured/?future,create",
+  ),
+  QuoteModel(
+    quote: "Your time is limited, don't waste it living someone else's life.",
+    isFavorite: true,
+    author: "Steve Jobs",
+    backgroundImage: "https://source.unsplash.com/featured/?time,waste",
+  ),
+  QuoteModel(
+    quote: "Strive not to be a success, but rather to be of value.",
+    isFavorite: false,
+    author: "Albert Einstein",
+    backgroundImage: "https://source.unsplash.com/featured/?strive,value",
   ),
   QuoteModel(
     quote:
         "The only person you are destined to become is the person you decide to be.",
     isFavorite: true,
     author: "Ralph Waldo Emerson",
-    backgroundImage: "https://example.com/image6.jpg",
+    backgroundImage: "https://source.unsplash.com/featured/?destined,decide",
   ),
   QuoteModel(
-    quote: "Be yourself; everyone else is already taken.",
+    quote: "Don't watch the clock; do what it does. Keep going.",
     isFavorite: false,
-    author: "Oscar Wilde",
-    backgroundImage: "https://example.com/image7.jpg",
+    author: "Sam Levenson",
+    backgroundImage: "https://source.unsplash.com/featured/?clock,keepgoing",
   ),
-  QuoteModel(
-    quote: "Life is what happens when you're busy making other plans.",
-    isFavorite: true,
-    author: "Allen Saunders",
-    backgroundImage: "https://example.com/image8.jpg",
-  ),
-  QuoteModel(
-    quote: "Believe you can and you're halfway there.",
-    isFavorite: false,
-    author: "Theodore Roosevelt",
-    backgroundImage: "https://example.com/image9.jpg",
-  ),
-  QuoteModel(
-    quote:
-        "The future belongs to those who believe in the beauty of their dreams.",
-    isFavorite: true,
-    author: "Eleanor Roosevelt",
-    backgroundImage: "https://example.com/image10.jpg",
-  ),
-  // Add more quotes as needed
 ];
