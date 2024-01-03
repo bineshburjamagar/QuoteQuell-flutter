@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:iconify_flutter_plus/iconify_flutter_plus.dart';
 import 'package:iconify_flutter_plus/icons/material_symbols.dart';
 import 'package:kavyanepal/features/home/models/models.dart';
+import 'package:share_plus/share_plus.dart';
 
 class QuoteContentWidget extends StatelessWidget {
   const QuoteContentWidget({super.key, required this.quoteModel});
@@ -29,6 +30,7 @@ class QuoteContentWidget extends StatelessWidget {
                   onTap: () {
                     switch (ind) {
                       case 0:
+                        Share.share(quoteModel.content ?? "");
                         break;
                       default:
                     }

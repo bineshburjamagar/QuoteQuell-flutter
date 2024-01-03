@@ -1,4 +1,4 @@
-package com.bineshburjamagar.kavyanepal
+package com.bineshburjamagar.quotequell
 
 import io.flutter.embedding.android.FlutterActivity
 
