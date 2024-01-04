@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:go_router/go_router.dart';
@@ -23,15 +24,20 @@ class HomePage extends HookConsumerWidget {
     final quotesList = ref.watch(quoteStateProvider);
 
     return Scaffold(
-      body: PageView.builder(
-        onPageChanged: (value) {
-          ref.read(quoteStateProvider.notifier).getNextData(value);
+      body: RefreshIndicator(
+        onRefresh: () {
+          return ref.read(quoteStateProvider.notifier).init();
         },
-        scrollDirection: Axis.vertical,
-        itemBuilder: (context, index) {
-          return QuotesWidget(quotes: quotesList[index]);
-        },
-        itemCount: quotesList.length,
+        child: PageView.builder(
+          onPageChanged: (value) {
+            ref.read(quoteStateProvider.notifier).getNextData(value);
+          },
+          scrollDirection: Axis.vertical,
+          itemBuilder: (context, index) {
+            return QuotesWidget(quotes: quotesList[index]);
+          },
+          itemCount: quotesList.length,
+        ),
       ),
     );
   }
@@ -67,9 +73,9 @@ class _QuotesWidgetState extends State<QuotesWidget> {
           controller: screenshotController,
           child: Stack(
             children: [
-              Image.network(
-                widget.quotes.image,
-                errorBuilder: (context, error, stackTrace) {
+              CachedNetworkImage(
+                imageUrl: widget.quotes.image,
+                errorWidget: (context, error, stackTrace) {
                   return Image.asset(
                     AssetPath.homeImage,
                     fit: BoxFit.fitHeight,
