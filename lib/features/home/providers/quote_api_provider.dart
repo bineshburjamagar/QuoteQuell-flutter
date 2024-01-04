@@ -44,22 +44,9 @@ class QuotesStateNotifier extends StateNotifier<List<QuotesModel>> {
   }
 
   Future getNextData(int currentIndex) async {
-    d.log(
-        "\n\n******************************\n\n\n\n******************************\n\n");
-
-    d.log('${state.length}');
-    d.log('$currentIndex');
-
-    d.log('$page');
-    d.log(
-        "\n\n******************************\n\n\n\n******************************\n\n");
-
     if (!isLast && !isLoading && (currentIndex == state.length - 2)) {
       isLoading = true;
       await init(isNext: true);
-    } else {
-      d.log(
-          "\n\n******************************\n\nno fetch\n\n******************************\n\n");
     }
   }
 

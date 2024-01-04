@@ -9,6 +9,8 @@ import 'package:kavyanepal/features/home/providers/quote_api_provider.dart';
 import 'package:kavyanepal/features/home/widgets/widgets.dart';
 import 'package:screenshot/screenshot.dart';
 
+import '../../more/dbquery/favorite_db_query.dart';
+
 class HomePage extends HookConsumerWidget {
   const HomePage({super.key});
   static const String routeName = "/homepage";
@@ -43,7 +45,7 @@ class HomePage extends HookConsumerWidget {
   }
 }
 
-class QuotesWidget extends StatefulWidget {
+class QuotesWidget extends StatefulHookConsumerWidget {
   const QuotesWidget({
     super.key,
     required this.quotes,
@@ -52,10 +54,10 @@ class QuotesWidget extends StatefulWidget {
   final QuotesModel quotes;
 
   @override
-  State<QuotesWidget> createState() => _QuotesWidgetState();
+  ConsumerState<QuotesWidget> createState() => _QuotesWidgetState();
 }
 
-class _QuotesWidgetState extends State<QuotesWidget> {
+class _QuotesWidgetState extends ConsumerState<QuotesWidget> {
   late ScreenshotController screenshotController;
   @override
   void initState() {
@@ -66,56 +68,65 @@ class _QuotesWidgetState extends State<QuotesWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      alignment: Alignment.center,
-      children: [
-        Screenshot(
-          controller: screenshotController,
-          child: Stack(
-            children: [
-              CachedNetworkImage(
-                imageUrl: widget.quotes.image,
-                errorWidget: (context, error, stackTrace) {
-                  return Image.asset(
-                    AssetPath.homeImage,
-                    fit: BoxFit.fitHeight,
-                  );
-                },
-                fit: BoxFit.fitHeight,
-                width: MediaQuery.of(context).size.width,
-                height: MediaQuery.of(context).size.height,
-              ),
-              Container(
-                color: Colors.black.withOpacity(0.7),
-                width: MediaQuery.of(context).size.width,
-                height: MediaQuery.of(context).size.height,
-              ),
-              Center(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 23.0),
-                  child: Text(
-                    "${widget.quotes.content}\n\n- ${widget.quotes.author}",
-                    textAlign: TextAlign.center,
-                    style: const TextStyle(
-                      fontSize: 24.0,
-                      color: Colors.white,
+    final favDbQuery = ref.watch(faveDbProvider);
+
+    return GestureDetector(
+      onDoubleTap: () {
+        setState(() {
+          favDbQuery.toggleFav(model: widget.quotes);
+        });
+      },
+      child: Stack(
+        alignment: Alignment.center,
+        children: [
+          Screenshot(
+            controller: screenshotController,
+            child: Stack(
+              children: [
+                CachedNetworkImage(
+                  imageUrl: widget.quotes.image,
+                  errorWidget: (context, error, stackTrace) {
+                    return Image.asset(
+                      AssetPath.homeImage,
+                      fit: BoxFit.fitHeight,
+                    );
+                  },
+                  fit: BoxFit.fitHeight,
+                  width: MediaQuery.of(context).size.width,
+                  height: MediaQuery.of(context).size.height,
+                ),
+                Container(
+                  color: Colors.black.withOpacity(0.7),
+                  width: MediaQuery.of(context).size.width,
+                  height: MediaQuery.of(context).size.height,
+                ),
+                Center(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 23.0),
+                    child: Text(
+                      "${widget.quotes.content}\n\n- ${widget.quotes.author}",
+                      textAlign: TextAlign.center,
+                      style: const TextStyle(
+                        fontSize: 24.0,
+                        color: Colors.white,
+                      ),
                     ),
                   ),
-                ),
-              ).animate().fade().scale(),
-            ],
+                ).animate().fade().scale(),
+              ],
+            ),
           ),
-        ),
-        Positioned(
-          bottom: 0.0,
-          left: 0.0,
-          right: 0.0,
-          child: QuoteContentWidget(
-            quoteModel: widget.quotes,
-            controller: screenshotController,
+          Positioned(
+            bottom: 0.0,
+            left: 0.0,
+            right: 0.0,
+            child: QuoteContentWidget(
+              quoteModel: widget.quotes,
+              controller: screenshotController,
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }
