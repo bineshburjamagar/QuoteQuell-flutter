@@ -32,4 +32,16 @@ class _FavoriteDbQuery {
         .findFirstSync()
         ?.id);
   }
+
+  Future<void> toggleFav({required QuotesModel model}) async {
+    int? isarId = getId(model: model);
+
+    if (isarId != null) {
+      await isar.writeTxn(() async {
+        return await isar.favQuotesDbModels.delete(isarId);
+      });
+    } else {
+      createOrUpdateFavQuotes(model);
+    }
+  }
 }
