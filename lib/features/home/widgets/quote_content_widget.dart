@@ -6,11 +6,11 @@ import 'package:iconify_flutter_plus/iconify_flutter_plus.dart';
 import 'package:iconify_flutter_plus/icons/material_symbols.dart';
 import 'package:image_gallery_saver/image_gallery_saver.dart';
 import 'package:kavyanepal/features/home/models/models.dart';
-import 'package:kavyanepal/features/more/more.dart';
 import 'package:screenshot/screenshot.dart';
 import 'package:share_plus/share_plus.dart';
 
 import '../../../utils/custom_bot_toast.dart';
+import '../../more/screens/screens.dart';
 
 class QuoteContentWidget extends StatelessWidget {
   const QuoteContentWidget(

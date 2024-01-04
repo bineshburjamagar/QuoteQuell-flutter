@@ -2,9 +2,9 @@ import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:kavyanepal/features/home/screens/screens.dart';
-import 'package:kavyanepal/features/more/more.dart';
 import 'package:kavyanepal/features/welcome/screens/screens.dart';
 import 'package:kavyanepal/splash_page.dart';
+import '../features/more/screens/screens.dart';
 
 class AppRouter {
   static final router = GoRouter(

@@ -18,6 +18,8 @@ dependencies:
   hooks_riverpod: ^2.4.9
   iconify_flutter_plus: ^1.0.3
   image_gallery_saver: ^2.0.3
+  isar: ^3.1.0+1
+  isar_flutter_libs: ^3.1.0+1
   lottie: ^2.7.0
   path_provider: ^2.1.1
   riverpod_annotation: ^2.3.3
@@ -32,13 +34,7 @@ dev_dependencies:
   riverpod_generator: ^2.3.9
   build_runner: ^2.4.7
   custom_lint: ^0.5.7
-  riverpod_lint: ^2.3.7
-  flutter_launcher_icons: ^0.13.1
-
-flutter_launcher_icons:
-  android: true
-  ios: true
-  image_path: "assets/images/logo.png"
+  isar_generator: ^3.1.0+1
 
 
 flutter:

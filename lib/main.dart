@@ -1,9 +1,23 @@
 import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:isar/isar.dart';
 import 'package:kavyanepal/config/config.dart';
+import 'package:path_provider/path_provider.dart';
 
-void main() {
+late Isar isar;
+
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  final dir = await getApplicationDocumentsDirectory();
+
+  isar = await Isar.open(
+    [],
+    directory: dir.path,
+    name: 'quote quell database',
+  );
+
   runApp(
     const ProviderScope(
       child: MainApp(),
