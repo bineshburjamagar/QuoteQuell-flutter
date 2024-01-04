@@ -20,6 +20,8 @@ class CustomSliverAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SliverAppBar(
+      snap: true,
+      floating: true,
       centerTitle: true,
       title: titleText != null ? Text('$titleText') : null,
       leading: InkWell(

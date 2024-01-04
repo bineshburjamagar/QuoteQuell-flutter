@@ -19,6 +19,7 @@ class AppRouter {
       HomePage.route(),
       SplashPage.route(),
       MorePage.route(),
+      FavoritePage.route(),
     ],
     errorBuilder: (context, state) {
       return const Scaffold(
