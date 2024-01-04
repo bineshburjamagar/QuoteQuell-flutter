@@ -1,1 +1,1 @@
-export './quotes_db_model.dart';
+export 'fav_quotes_db_model.dart';

@@ -5,6 +5,8 @@ import 'package:isar/isar.dart';
 import 'package:kavyanepal/config/config.dart';
 import 'package:path_provider/path_provider.dart';
 
+import 'features/more/models/models.dart';
+
 late Isar isar;
 
 Future<void> main() async {
@@ -13,7 +15,7 @@ Future<void> main() async {
   final dir = await getApplicationDocumentsDirectory();
 
   isar = await Isar.open(
-    [],
+    [FavQuotesDbModelSchema],
     directory: dir.path,
     name: 'quote quell database',
   );
