@@ -11,10 +11,12 @@ final faveDbProvider = Provider<_FavoriteDbQuery>((ref) {
 class _FavoriteDbQuery {
   Future<void> createOrUpdateFavQuotes(QuotesModel model) async {
     var favDbModel = FavQuotesDbModel(
-        quoteId: model.id,
-        author: model.author ?? '',
-        quote: model.content ?? '',
-        imageUrl: model.image);
+      quoteId: model.id,
+      author: model.author ?? '',
+      quote: model.content ?? '',
+      imageUrl: model.image,
+      createdDate: DateTime.now(),
+    );
 
     var oldId = getId(model: model);
     if (oldId != null) {

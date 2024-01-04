@@ -63,6 +63,7 @@ class QuotesModel {
   String get image =>
       'https://source.unsplash.com/random/?$content&&orientation=portrait';
 
+  DateTime get createdDate => DateTime.now();
   bool get isFavorite => false;
 
   QuotesModel copyWith() {

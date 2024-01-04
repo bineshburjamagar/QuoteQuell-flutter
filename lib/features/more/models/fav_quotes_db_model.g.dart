@@ -22,18 +22,23 @@ const FavQuotesDbModelSchema = CollectionSchema(
       name: r'author',
       type: IsarType.string,
     ),
-    r'imageUrl': PropertySchema(
+    r'createdDate': PropertySchema(
       id: 1,
+      name: r'createdDate',
+      type: IsarType.dateTime,
+    ),
+    r'imageUrl': PropertySchema(
+      id: 2,
       name: r'imageUrl',
       type: IsarType.string,
     ),
     r'quote': PropertySchema(
-      id: 2,
+      id: 3,
       name: r'quote',
       type: IsarType.string,
     ),
     r'quoteId': PropertySchema(
-      id: 3,
+      id: 4,
       name: r'quoteId',
       type: IsarType.string,
     )
@@ -72,9 +77,10 @@ void _favQuotesDbModelSerialize(
   Map<Type, List<int>> allOffsets,
 ) {
   writer.writeString(offsets[0], object.author);
-  writer.writeString(offsets[1], object.imageUrl);
-  writer.writeString(offsets[2], object.quote);
-  writer.writeString(offsets[3], object.quoteId);
+  writer.writeDateTime(offsets[1], object.createdDate);
+  writer.writeString(offsets[2], object.imageUrl);
+  writer.writeString(offsets[3], object.quote);
+  writer.writeString(offsets[4], object.quoteId);
 }
 
 FavQuotesDbModel _favQuotesDbModelDeserialize(
@@ -85,9 +91,10 @@ FavQuotesDbModel _favQuotesDbModelDeserialize(
 ) {
   final object = FavQuotesDbModel(
     author: reader.readString(offsets[0]),
-    imageUrl: reader.readString(offsets[1]),
-    quote: reader.readString(offsets[2]),
-    quoteId: reader.readString(offsets[3]),
+    createdDate: reader.readDateTime(offsets[1]),
+    imageUrl: reader.readString(offsets[2]),
+    quote: reader.readString(offsets[3]),
+    quoteId: reader.readString(offsets[4]),
   );
   object.id = id;
   return object;
@@ -103,10 +110,12 @@ P _favQuotesDbModelDeserializeProp<P>(
     case 0:
       return (reader.readString(offset)) as P;
     case 1:
-      return (reader.readString(offset)) as P;
+      return (reader.readDateTime(offset)) as P;
     case 2:
       return (reader.readString(offset)) as P;
     case 3:
+      return (reader.readString(offset)) as P;
+    case 4:
       return (reader.readString(offset)) as P;
     default:
       throw IsarError('Unknown property with id $propertyId');
@@ -339,6 +348,62 @@ extension FavQuotesDbModelQueryFilter
       return query.addFilterCondition(FilterCondition.greaterThan(
         property: r'author',
         value: '',
+      ));
+    });
+  }
+
+  QueryBuilder<FavQuotesDbModel, FavQuotesDbModel, QAfterFilterCondition>
+      createdDateEqualTo(DateTime value) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'createdDate',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<FavQuotesDbModel, FavQuotesDbModel, QAfterFilterCondition>
+      createdDateGreaterThan(
+    DateTime value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'createdDate',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<FavQuotesDbModel, FavQuotesDbModel, QAfterFilterCondition>
+      createdDateLessThan(
+    DateTime value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'createdDate',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<FavQuotesDbModel, FavQuotesDbModel, QAfterFilterCondition>
+      createdDateBetween(
+    DateTime lower,
+    DateTime upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'createdDate',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
       ));
     });
   }
@@ -831,6 +896,20 @@ extension FavQuotesDbModelQuerySortBy
   }
 
   QueryBuilder<FavQuotesDbModel, FavQuotesDbModel, QAfterSortBy>
+      sortByCreatedDate() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'createdDate', Sort.asc);
+    });
+  }
+
+  QueryBuilder<FavQuotesDbModel, FavQuotesDbModel, QAfterSortBy>
+      sortByCreatedDateDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'createdDate', Sort.desc);
+    });
+  }
+
+  QueryBuilder<FavQuotesDbModel, FavQuotesDbModel, QAfterSortBy>
       sortByImageUrl() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'imageUrl', Sort.asc);
@@ -885,6 +964,20 @@ extension FavQuotesDbModelQuerySortThenBy
       thenByAuthorDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'author', Sort.desc);
+    });
+  }
+
+  QueryBuilder<FavQuotesDbModel, FavQuotesDbModel, QAfterSortBy>
+      thenByCreatedDate() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'createdDate', Sort.asc);
+    });
+  }
+
+  QueryBuilder<FavQuotesDbModel, FavQuotesDbModel, QAfterSortBy>
+      thenByCreatedDateDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'createdDate', Sort.desc);
     });
   }
 
@@ -953,6 +1046,13 @@ extension FavQuotesDbModelQueryWhereDistinct
   }
 
   QueryBuilder<FavQuotesDbModel, FavQuotesDbModel, QDistinct>
+      distinctByCreatedDate() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addDistinctBy(r'createdDate');
+    });
+  }
+
+  QueryBuilder<FavQuotesDbModel, FavQuotesDbModel, QDistinct>
       distinctByImageUrl({bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'imageUrl', caseSensitive: caseSensitive);
@@ -985,6 +1085,13 @@ extension FavQuotesDbModelQueryProperty
   QueryBuilder<FavQuotesDbModel, String, QQueryOperations> authorProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'author');
+    });
+  }
+
+  QueryBuilder<FavQuotesDbModel, DateTime, QQueryOperations>
+      createdDateProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'createdDate');
     });
   }
 
