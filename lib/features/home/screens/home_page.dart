@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:kavyanepal/config/config.dart';
 import 'package:kavyanepal/features/home/models/quotes_model_meta.dart';
 import 'package:kavyanepal/features/home/providers/quote_api_provider.dart';
 import 'package:kavyanepal/features/home/widgets/widgets.dart';
@@ -68,6 +69,12 @@ class _QuotesWidgetState extends State<QuotesWidget> {
             children: [
               Image.network(
                 widget.quotes.image,
+                errorBuilder: (context, error, stackTrace) {
+                  return Image.asset(
+                    AssetPath.homeImage,
+                    fit: BoxFit.fitHeight,
+                  );
+                },
                 fit: BoxFit.fitHeight,
                 width: MediaQuery.of(context).size.width,
                 height: MediaQuery.of(context).size.height,

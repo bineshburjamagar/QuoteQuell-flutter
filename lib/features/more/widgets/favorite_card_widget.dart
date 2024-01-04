@@ -28,7 +28,7 @@ class FavoriteCardWidget extends StatelessWidget {
                 image: Image.network(
                   favQuotesDbModel.imageUrl,
                   errorBuilder: (context, error, stackTrace) {
-                    return Image.asset(AssetPath.logo);
+                    return Image.asset(AssetPath.homeImage);
                   },
                 ).image,
                 opacity: 0.1,
